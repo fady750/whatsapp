@@ -1,26 +1,40 @@
 @import "tailwindcss";
 
+@theme{
+  /* colors */
+  --color-primary-50: rgb(255 255 255 / 16%);
+  --color-primary-100:#B8B8B8;
+  --color-primary-150:#373737; /* for background hover*/
+  --color-primary-200:#21C063; /* green color */
+  --color-primary-250:#FAFAFA; /* white for text */
+  --color-primary-300:#161717; /* black color for background */
+  --color-primary-350:#154D37; /* green color for chat message background */
+  --color-primary-400:#53BDEB; /* blue color for read message */
+  --color-primary-450:#242727; /* brown color for background message   */
+  --color-filter-50: #124630;
+  --color-WDS-persistent-always-black-RGB: 10, 10, 10;
+  --shadow-persistent: 11px -2px 4px rgba(var(--color-WDS-persistent-always-black-RGB), 0.12);
+  --shadow-input-message: 0 1px 6px #0000001f;
+
+  /* border */
+  --radius-border-radius-fully:9999px;
+
+  /* background */
+  --background-Chat-Messages: url("/public/background.png");
+  --container-Chat-Messages: url("/public/background.png");
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --WDS-persistent-always-black-RGB: 10, 10, 10;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    margin: 0;
+    box-sizing: border-box;
+  };
+  img, video {
+    height: revert;
+    max-width: revert;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
