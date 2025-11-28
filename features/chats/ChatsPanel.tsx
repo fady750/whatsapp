@@ -1,7 +1,7 @@
 import ChatsBody from "@/features/chats//ChatsBody"
 import ChatsHeader from "@/features/chats/ChatsHeader"
 
-export default async function ChatsPanel(){
+export default function ChatsPanel(){
     return(
             <>
                 <ChatsHeader/>
