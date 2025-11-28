@@ -4,7 +4,7 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import InputAdornment from '@mui/material/InputAdornment';
 export default function SearchInput(){
     return(
-        <div className="px-[20px] mb-[5px] relative z-100 flex h-[44px]" >
+        <div className="px-5 w-full mb-[5px] relative z-100 flex h-11">
             <OutlinedInput
             size="small"
             id="search"

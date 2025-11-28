@@ -1,10 +1,10 @@
-import ChatInfoBody from "./ChatInfoBody";
+import ChatInfoBody from "@/features/chats/ChatInfoBody";
 import ChatInfoHeader from "./ChatInfoHeader";
 type ChatInfoProps={
     chat:{
         conversationTitle:string,
         date:string,
-        MessageStatus:"sent" | "received" | "read",
+        MessageStatus:"sent" | "delivered" | "read",
         lastMessage:string,
     }
 }

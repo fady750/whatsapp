@@ -1,6 +1,6 @@
-import ChatsList from "./ChatsList";
-import SearchInput from "./SearchInput";
-import ChatsFilterBar from "@/app/_components/ChatsFilterBar";
+import ChatsList from "@/features/chats/ChatsList";
+import SearchInput from "@/shared/ui/SearchInput";
+import ChatsFilterBar from "@/features/chats/ChatsFilterBar";
 
 export default function ChatsBody (){
     return(

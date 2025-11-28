@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import NavBar from "./_components/NavBar";
-
+import { AppProvider } from "@/app/_components/AppContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,9 +25,11 @@ export default function RootLayout({
   return (
     <html className="" lang="en">
       <body
-        className={` overflow-hidden w-full h-full ${geistSans.variable} ${geistMono.variable}`}
+        className={` overflow-hidden w-full h-full ${geistSans.variable} ${geistMono.variable} min-h-full text-primary-250 font-sans bg-[#171717]`}
       >
+        <AppProvider>
           {children}
+        </AppProvider>
       </body>
     </html>
   );

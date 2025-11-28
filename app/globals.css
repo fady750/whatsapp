@@ -11,6 +11,30 @@
   --color-primary-350:#154D37; /* green color for chat message background */
   --color-primary-400:#53BDEB; /* blue color for read message */
   --color-primary-450:#242727; /* brown color for background message   */
+  --color-primary-500:#FB5061; /* brown color for background message   */
+  --color-accent-50:#FAF5F0;
+  --color-accent-100:#F4ECE1;
+  --color-accent-200:#E8D6BF;
+  --color-accent-300:#DDC2A2;
+  --color-accent-400:#D2AF84;
+  --color-accent-500:#C69963;
+  --color-accent-600:#B78343;
+  --color-accent-700:#926835;
+  --color-accent-800:#6C4D28;
+  --color-accent-900:#4B351B;
+  --color-accent-950:#382814;
+  --color-old-primary-50:#E1E8EF;
+  --color-old-primary-100:#D4DEE7;
+  --color-old-primary-200:#B7C7D7;
+  --color-old-primary-300:#99B0C7;
+  --color-old-primary-400:#7C99B6;
+  --color-old-primary-500:#5E82A6;
+  --color-old-primary-600:#4C6B8A;
+  --color-old-primary-700:#3C546C;
+  --color-old-primary-800:#2C3D4F;
+  --color-old-primary-900:#1B2631;
+  --color-old-primary-950:#141C24;
+
   --color-filter-50: #124630;
   --color-WDS-persistent-always-black-RGB: 10, 10, 10;
   --shadow-persistent: 11px -2px 4px rgba(var(--color-WDS-persistent-always-black-RGB), 0.12);
@@ -22,10 +46,16 @@
   /* background */
   --background-Chat-Messages: url("/public/background.png");
   --container-Chat-Messages: url("/public/background.png");
+  /* heights */
+  --height-base:64px;
+  --height-normal:72px;
 }
 
 :root {
   --WDS-persistent-always-black-RGB: 10, 10, 10;
+  --my-input-border:#757778;
+  --my-input-border-active:#154D37;
+
 }
 
 @layer base {
@@ -36,5 +66,32 @@
   img, video {
     height: revert;
     max-width: revert;
+  }
+
+}
+
+@layer components{
+  .spinner-mini {
+    margin: 0;
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid theme('colors.old.primary.200');
+    border-right-color: transparent;
+    animation: rotate 1s infinite linear;
+  }
+  .spinner {
+    margin: 3.2rem auto 1.6rem;
+    width: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid theme('colors.old.primary.900');
+    border-right-color: theme('colors.old.primary.200');
+    animation: rotate 1s infinite linear;
+  }
+  @keyframes rotate { 
+    to {
+      transform: rotate(1turn);
+    }
   }
 }

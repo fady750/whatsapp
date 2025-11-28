@@ -1,4 +1,4 @@
-import {Message} from "@/app/_types/message"
+import {Message} from "@/app/_types/Message"
 import MessageStatus from "./MessageStatus";
 
 type MessageItemProps = {

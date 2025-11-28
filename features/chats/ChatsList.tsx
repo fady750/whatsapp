@@ -1,5 +1,6 @@
 import { Message } from "@/app/_types/ChatPrereview"
-import ChatPreview from "./ChatPreview"
+import ChatPreview from "@/features/chats/ChatPreview"
+import { OverFlowList } from "@/shared/ui/OverFlowList"
 
 const conversations:Message[] =[
     {
@@ -117,13 +118,12 @@ const conversations:Message[] =[
 
 export default function ChatsList(){
     return(
-        <div className=" scroll-smooth flex-1 overflow-y-auto w-full flex flex-col mb-[76px]">
-            {conversations.map((ele, idx)=>{
-                return(
-                    <ChatPreview chat={ele} key={idx}/>
-                )
-            })}
-        </div>
-
+            <OverFlowList styles="mb-[76px]!" >
+                {conversations.map((ele, idx)=>{
+                    return(
+                        <ChatPreview chat={ele} key={idx}/>
+                    )
+                })}
+            </OverFlowList>
     )
 }
