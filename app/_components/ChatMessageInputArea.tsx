@@ -4,8 +4,8 @@ import { useChatContext } from "../_providers/ChatProvider";
 
 export default function ChatMessageInputArea(){
     const {activeConversation} = useChatContext()
-    const {data} = useSession();
-    
+    const {data, status} = useSession();
+    if(status !== "authenticated") return;
     const user = data?.user
     const conversationId = activeConversation?.id;
     const senderId = user.profileID;
