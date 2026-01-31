@@ -4,13 +4,26 @@ import { signoutAction } from "@/app/_lib/action";
 import { useAppContext } from "./AppContext";
 import { LeftPanelState } from "@/app/_types/Components";
 import { AvatarCardLarge } from "@/shared/ui/Avatar";
+
+type NavbarStateTypes = {
+    panelMode : "chats" | "profile" | "settings";
+}
+
 export default function NavBar(){
-    const {setLeftPanelMode} = useAppContext();
-    function handleSetLeftPanelMode(leftPanelMode:LeftPanelState["mode"]){
-        setLeftPanelMode(leftPanelMode);
+    const {setLeftPanelMode, setRightPanelMode, activeConversation} = useAppContext();
+    
+    function handleSetLeftPanelMode(PanelMode:NavbarStateTypes["panelMode"]){
+        setLeftPanelMode(PanelMode);
+        if(activeConversation === undefined && PanelMode==='chats'){
+            setRightPanelMode('init');
+        }
+        else{
+            setRightPanelMode(PanelMode);
+        }
     }
+
     return(
-        <nav className="py-2.5 w-16 px-3 h-screen overflow-y-hidden bg-[#1D2020] flex flex-col justify-between items-center " >
+        <nav className="box-content w-16 px-3 h-screen overflow-hidden bg-[#1D2020] flex flex-col justify-between items-center " >
             <div onClick={()=>handleSetLeftPanelMode("chats")} className="flex flex-col gap items-start justify-start">
                 <div className="my-0.5 h-10 w-10 flex items-center justify-center cursor-pointer hover:bg-[#2D3030] bg-[#2D3030] rounded-full">
                     <Messages/>
@@ -25,16 +38,12 @@ export default function NavBar(){
                     <Communities  />
                 </div>
             </div>
+            
             <div className="flex flex-col gap items-start justify-start" >
                 <div className="my-0.5 h-10 w-10 flex items-center justify-center cursor-pointer hover:bg-[#2D3030] rounded-full" onClick={()=>handleSetLeftPanelMode("settings")} >
                     <Settings/>
                 </div>
                 <div onClick={()=>handleSetLeftPanelMode("profile")} className="my-0.5 h-10 w-10 flex items-center justify-center cursor-pointer hover:bg-[#2D3030] rounded-full">
-                    {/* <form action={signoutAction} >
-                        <button type="submit" >
-                            <LogOut/>
-                        </button>
-                    </form> */}
                     <AvatarCardLarge styles="h-[28px]! w-[28px]!" />
                 </div>
             </div>

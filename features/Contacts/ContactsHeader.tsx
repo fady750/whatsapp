@@ -1,11 +1,11 @@
 "use client"
 
-import { useAppContext } from "@/app/_components/AppContext";
 import { LeftArrowButton } from "@/app/_components/Icons";
+import { useAppUIContext } from "@/app/_providers/AppUIProvider";
 import LeftPanelHeader from "@/shared/ui/LeftPanelHeader";
 
 export default function ContactsHeader(){
-    const {setLeftPanelMode} = useAppContext();
+    const {setLeftPanelMode} = useAppUIContext();
     function handleClickOnArrow (){
         setLeftPanelMode("chats");
     }

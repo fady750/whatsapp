@@ -7,7 +7,7 @@ type LogoutFormProps = {
 
 export default function LogoutForm({children}:LogoutFormProps){
     return(
-        <form action={signoutAction}>
+        <form className="w-full" action={signoutAction}>
             <button className="w-full" >
                 {children}
             </button>

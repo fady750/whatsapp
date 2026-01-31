@@ -1,7 +1,8 @@
 import Image from "next/image";
 
-import SignupForm from "@/app/signup/SignupForm";
+import SignupForm from "@/app/(auth)/signup/SignupForm";
 import { WhatsAppIcon } from "@/shared/ui/Icons";
+import Link from "next/link";
 
 export default async function Page(){ 
     return(
@@ -21,8 +22,9 @@ export default async function Page(){
             <div className=" text-xl font-extralight" >
                 <p>Contact With your friends instantly</p>
             </div>
-            <div className=" bg-primary-150 shadow-WDS-persistent-always-black-RGB px-8 py-6 rounded-xl">
+            <div className=" bg-primary-150 shadow-WDS-persistent-always-black-RGB flex flex-col px-8 py-6 rounded-xl">
                 <SignupForm/>
+                <Link href="/login" className=" mt-7 w-full mx-auto text-center hover:text-primary-350 transition duration-300" >Sign in ?</Link>
             </div>
         </div>
     )

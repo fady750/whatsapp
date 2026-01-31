@@ -4,7 +4,7 @@ export const metadata:Metadata = {
     title:"login",
 }
 
-
+import "@/app/globals.css"
 
 export default function LoginLayout({
   children,

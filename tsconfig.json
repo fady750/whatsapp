@@ -35,8 +35,10 @@
     "**/*.tsx",
     "tailwind.config.ts",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
-, "app/_lib/auth.js"  ],
+    ".next/dev/types/**/*.ts",
+    "app/auth.js",
+    "app/_styles/animations.js"
+  ],
   "exclude": [
     "node_modules"
   ]

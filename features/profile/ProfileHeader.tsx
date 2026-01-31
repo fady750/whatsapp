@@ -2,8 +2,8 @@ import LeftPanelHeader from "@/shared/ui/LeftPanelHeader";
 
 export default function ProfileHeader(){
     return(
-        <LeftPanelHeader styles="px-5! py-2.5!" >
-            <h1 className="font-medium text-2xl text-primary-250" >Profile</h1>
+        <LeftPanelHeader styles="flex-col! gap-1! h-fit! items-start!" >
+            <h1 className="text-primary-250 p-5 font-medium text-2xl" >Profile</h1>
         </LeftPanelHeader>
     )
 }

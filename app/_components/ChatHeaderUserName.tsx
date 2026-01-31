@@ -1,7 +1,7 @@
-export default function ChatHeaderUserName(){
+export default function ChatHeaderUserName({name}:{name:string|undefined}){
     return(
         <div className=" cursor-pointer text-start font-semibold text-primary-250" >
-            George samier
+            {name}
         </div>
     )
 }

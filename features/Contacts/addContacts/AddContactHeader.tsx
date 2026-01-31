@@ -1,10 +1,10 @@
-import { useAppContext } from "@/app/_components/AppContext";
+import { useAppUIContext } from "@/app/_providers/AppUIProvider";
 import IconContainer from "@/shared/ui/IconContainer";
 import {LeftArrowButton} from "@/shared/ui/Icons"
 import LeftPanelHeader from "@/shared/ui/LeftPanelHeader";
 
 export default function AddContactHeader(){
-    const {setLeftPanelMode} = useAppContext();
+    const {setLeftPanelMode} = useAppUIContext();
     function handleSetLeftPanelMode(){
         setLeftPanelMode("contacts");
     }

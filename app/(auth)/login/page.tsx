@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { WhatsAppIcon } from "@/shared/ui/Icons";
-import SignInButton from "../_components/SignInButton";
+// import SignInButton from "@//_components/SignInButton";
+import SignInButton from "@/app/_components/SignInButton"
 import LoginForm from "./loginForm";
+import Link from "next/link";
 
 export default function Page(){
     return(
@@ -23,6 +25,7 @@ export default function Page(){
             </div>
             <div className=" bg-primary-150 shadow-WDS-persistent-always-black-RGB px-8 py-6 rounded-xl flex flex-col gap-5">
                 <LoginForm/>
+                <Link className="w-full text-center hover:text-primary-350 transition duration-300"  href="/signup" >Sign up?</Link>   
                 <SignInButton/>
             </div>
         </div>

@@ -1,7 +1,14 @@
 import React from "react";
 
 type CardContainerProps = {
-    ContentSide: React.ComponentType;
+    ContentSide: React.ComponentType ;
+    ImageSide: React.ComponentType;
+    styles?: string;
+    handleOnClick?:()=>void;
+};
+
+type CardContainerNormalProps = {
+    ContentSide: React.ReactElement ;
     ImageSide: React.ComponentType;
     styles?: string;
     handleOnClick?:()=>void;
@@ -18,7 +25,18 @@ export function CardContainerBase({ContentSide,ImageSide, handleOnClick=()=>{} }
     )
 }
 
-export function CardContainerNormal({ContentSide,ImageSide, handleOnClick=()=>{} }:CardContainerProps){
+export function CardContainerNormal({ContentSide,ImageSide, handleOnClick=()=>{} }:CardContainerNormalProps){
+    return(
+        <div className="h-normal px-2" onClick={handleOnClick} >
+            <div className="mx-2.5  rounded-xl  flex items-center justify-start overflow-hidden cursor-pointer hover:bg-primary-150">
+                <ImageSide/>
+                {ContentSide}
+            </div>
+        </div>
+    )
+}
+
+export function CardContactCard({ContentSide,ImageSide, handleOnClick=()=>{} }:CardContainerProps){
     return(
         <div className="h-normal px-2" onClick={handleOnClick} >
             <div className="mx-2.5  rounded-xl  flex items-center justify-start overflow-hidden cursor-pointer hover:bg-primary-150">
@@ -31,8 +49,8 @@ export function CardContainerNormal({ContentSide,ImageSide, handleOnClick=()=>{}
 
 export function CardContainer({ImageSide, ContentSide,styles, handleOnClick=()=>{} }:CardContainerProps){
     return(
-        <div className={`h-normal px-2 ${styles}`} onClick={handleOnClick} >
-            <div className="mx-2.5  rounded-xl  flex items-center justify-start overflow-hidden cursor-pointer hover:bg-primary-150">
+        <div className={`h-normal mx-2.5 px-2 `} onClick={handleOnClick} >
+            <div className={` ${styles}  rounded-xl w-full  flex items-center justify-start overflow-hidden cursor-pointer hover:bg-primary-150`}>
                 <ImageSide/>
                 <ContentSide/>
             </div>

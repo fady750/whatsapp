@@ -1,8 +1,7 @@
 "use client"
 import { signUpAction } from "@/app/_lib/action"
 import { useState } from "react"
-import SpinnerMini from "../_components/SpinnerMini";
-import { auth } from "../_lib/auth";
+import SpinnerMini from "@/app/_components/SpinnerMini";
 type errorsTypes = {
     nameErrorMessage:string
     emailErrorMessage:string,

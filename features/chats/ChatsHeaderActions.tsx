@@ -1,6 +1,7 @@
 "use client"
 
 import { useAppContext } from "@/app/_components/AppContext";
+import { useAppUIContext } from "@/app/_providers/AppUIProvider";
 import { LeftPanelState } from "@/app/_types/Components"
 import IconContainer from "@/shared/ui/IconContainer";
 
@@ -8,11 +9,12 @@ import IconContainer from "@/shared/ui/IconContainer";
 
 
 export default function ChatsHeaderActions(){
+    const {setLeftPanelMode} = useAppUIContext()
     
-    const {setLeftPanelMode} = useAppContext();
     function handleSetLeftPanelMode(leftPanelMode:LeftPanelState["mode"]){
         setLeftPanelMode(leftPanelMode);
     }
+
     return(
         <div className=" flex-none flex items-center justify-center" >
             <div onClick={()=>handleSetLeftPanelMode("contacts")} >

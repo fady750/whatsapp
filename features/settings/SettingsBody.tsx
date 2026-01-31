@@ -1,11 +1,12 @@
-import { AvatarCardLarge } from "@/shared/ui/Avatar"
+import { AvatarCardLargeWithURL } from "@/shared/ui/Avatar"
+import { CardContainer } from "@/shared/ui/CardContainer"
 import { CardContent } from "@/shared/ui/CardContent"
+import { ChatsIcon, HelpIcon, KeyboardIcon, KeyIcon, LockIcon, LogOut, NotificationIcon } from "@/shared/ui/Icons"
 import { OverFlowList } from "@/shared/ui/OverFlowList"
-import { KeyIcon, LockIcon, ChatsIcon, NotificationIcon, KeyboardIcon, HelpIcon, LogOut } from "@/shared/ui/Icons"
-import { CardContainer, CardContainerNormal } from "@/shared/ui/CardContainer"
 import { Divider } from "@mui/material"
 import LogoutForm from "./LogoutForm"
-
+import { useSession } from "next-auth/react"
+import { useAppUIContext } from "@/app/_providers/AppUIProvider"
 
 
 const SettingsAction = [
@@ -37,12 +38,25 @@ const SettingsAction = [
 ]
 
 export default function SettingsBody(){
+    const {data, status} = useSession();
+    const { setLeftPanelMode, setRightPanelMode} = useAppUIContext();
+    if(status !== "authenticated") return
+    const user = data?.user
+    const avatar_url = user.avatar_url;
+    const user_name = user?.username
+    const info = user?.info
+
+    function handleOnClickProfile(){
+        setLeftPanelMode("profile");
+        setRightPanelMode("profile");
+    }
+
     return (
         <div className="flex flex-col h-screen w-full relative">
-            <OverFlowList styles="pb-[300px]!" >
+            <OverFlowList styles="pb-[300px]! space-y-2" >
 
-                <CardContainer styles="h-fit!" ImageSide={()=>( <div className=" py-3 pl-2.5 pr-3.5" > < AvatarCardLarge styles="h-[64px]! w-[64px]!"/></div>)}
-                    ContentSide={()=>(<CardContent CardContentStyles="my-3!" contentHeader="fady nasser" contentInfo="." />)} 
+                <CardContainer handleOnClick={handleOnClickProfile} styles="h-fit!" ImageSide={()=>( <div className=" py-3 pl-2.5 pr-3.5" > < AvatarCardLargeWithURL url={avatar_url} styles="h-[64px]! w-[64px]!"/></div>)}
+                    ContentSide={()=>(<CardContent CardContentStyles="my-3!" contentHeader={user_name } contentInfo={info} />)} 
                 />
 
                 <Divider
@@ -52,17 +66,18 @@ export default function SettingsBody(){
                         borderColor:"text-primary-250!",
                         marginLeft:8,
                         marginRight:8,
+                        marginY:2,
                 }} />
 
                 {SettingsAction.map((ele, idx)=>{
                     return(
-                        <CardContainerNormal ImageSide={ele.ImageSide} ContentSide={ele.RightSide} key={idx} />
+                        <CardContainer ImageSide={ele.ImageSide} ContentSide= {ele.RightSide} key={idx} />
                     )
                 })}
 
                 <LogoutForm>
-                    <CardContainerNormal  ImageSide={()=>( <div className=" py-3 pl-2.5 pr-3.5" > < LogOut/></div>)}
-                        ContentSide={()=> (<CardContent CardContentStyles="my-3!" contentHeader="Logout " contentHeaderStyles="text-primary-500!"/>)} 
+                    <CardContainer  ImageSide={()=>( <div className=" py-3 pl-2.5 pr-3.5" > < LogOut/></div>)}
+                        ContentSide={()=> (<CardContent CardContentStyles="my-3! h-[72px]!" contentHeader="Logout " contentHeaderStyles="text-primary-500!"/>)} 
                         />
                 </LogoutForm>
 

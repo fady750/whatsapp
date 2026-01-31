@@ -1,4 +1,4 @@
-import { ReadMessage, ReceivedMessage, SendMessage } from "./Icons";
+import { ReadMessage, ReceivedMessage, SendMessage } from "@/shared/ui/Icons";
 type MessageStatusProps = {
     MessageStatus: "sent" | 'delivered' | "read"
 }

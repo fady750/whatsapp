@@ -1,11 +1,17 @@
-import ChatsBody from "@/features/chats//ChatsBody"
-import ChatsHeader from "@/features/chats/ChatsHeader"
+import ChatsBody from "@/features/chats//ChatsBody";
+import ChatsHeader from "@/features/chats/ChatsHeader";
+import { memo } from "react";
 
-export default function ChatsPanel(){
+
+
+export default memo( ChatsPanel )
+
+function ChatsPanel (){
+    
     return(
-            <>
-                <ChatsHeader/>
-                <ChatsBody/>
-            </>
+        <>
+            <ChatsHeader/>
+            <ChatsBody />
+        </>
     )
 }
