@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WhatsApp Web Clone
 
-## Getting Started
+A full-stack WhatsApp Web–inspired chat application built with Next.js, Supabase, and NextAuth, focusing on real-time messaging, clean UX, and scalable state management.
 
-First, run the development server:
+---
 
+## ✨ Features
+
+- 🔐 Authentication
+  - Google OAuth using NextAuth
+  - Secure session handling
+
+- 💬 Real-Time Chat
+  - Instant message delivery using Supabase Realtime
+  - Message status: sent → delivered → read
+  - Active conversation updates without refresh
+
+- 📋 Conversations Sidebar
+  - Last message preview
+  - Real-time ordering and updates
+  - Unread state handling
+
+- 👤 Contacts System
+  - Add contacts manually
+  - Conversations created on first message
+
+- 🖼 Profile Management
+  - Update avatar (Supabase Storage)
+  - Update profile info
+  - Cache-safe avatar updates
+
+- ⚡ Optimized UX
+  - Smooth auto-scroll behavior
+  - No URL state sharing (WhatsApp Web–style layout)
+  - Context-based state isolation to reduce re-renders
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS
+- Context API
+
+### Backend / Services
+- Supabase (PostgreSQL, Realtime, Storage)
+- NextAuth (Auth.js v5)
+
+---
+
+## 📦 Dependencies
+
+Key libraries used in this project:
+
+- next
+- react
+- next-auth
+- @supabase/supabase-js
+- tailwindcss
+- typescript
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone https://github.com/your-username/whatsapp-web-clone.git
+cd whatsapp-web-clone
