@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { createProfile, getProfiles } from "@/app/_lib/data-service";
-import type { NextAuthConfig } from "next-auth";
+import type { DefaultSession, NextAuthConfig, Session } from "next-auth";
 import NextAuth from "next-auth";
 
 export const authOptions:NextAuthConfig = {
@@ -78,15 +78,15 @@ export const authOptions:NextAuthConfig = {
             return token;
         },
 
-        async session({ session, token }) {
+        async session({ session, token }):Promise<Session | DefaultSession> {
             if (session.user) {
                 session.user.email = token.email as string;
                 session.user.username = token.username;
                 session.user.avatar_url = token.avatar_url;
                 session.user.info = token.info;
                 session.user.profileID = token.profileID ;
-                return session;
             }
+            return session;
         },
 
     },
