@@ -5,6 +5,6 @@ import ContactContent from "@/features/Contacts/addContacts/ContactContent"
 
 export default function ContactsPreview (){
     return(
-        <CardContainerBase ImageSide={AvatarCard} ContentSide={ContactContent} />
+        <CardContainerBase ImageSide={AvatarCard} ContentSide={()=>ContactContent({custom_name:"", info:""})} />
     )
 }

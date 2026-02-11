@@ -51,7 +51,7 @@ export default function Navbar(){
                         &&
                         <div onClick={()=>handleSetLeftPanelMode("profile")} className="my-0.5 h-10 w-10 p-1.5 cursor-pointer hover:bg-[#2D3030] rounded-full flex items-center justify-center">
                             <div className=" relative rounded-full overflow-hidden" >
-                                <Image width={28} height={28} className="w-7! h-7!" alt="userImage" src={user?.avatar_url} />
+                                <Image width={28} height={28} className="w-7! h-7!" alt="userImage" src={user?.avatar_url as string} />
                             </div>
                             {/* <AvatarCardWithUrl url={user?.avatar_url}/> */}
                         </div>

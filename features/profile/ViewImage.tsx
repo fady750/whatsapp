@@ -3,7 +3,7 @@ import Popover from '@mui/material/Popover';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 
-export default function ViewImage({anchorEl, handleClose}:{anchorEl:any, handleClose:()=>void, }){
+export default function ViewImage({anchorEl, handleClose}:{anchorEl:HTMLElement | null, handleClose:()=>void, }){
     
     const open = Boolean(anchorEl);
     const {data, status} = useSession();
@@ -39,7 +39,7 @@ export default function ViewImage({anchorEl, handleClose}:{anchorEl:any, handleC
                 <Image
                     fill
                     className=' aspect-square'
-                    src={user?.avatar_url}
+                    src={user?.avatar_url ?? ""}
                     alt='user Image'
                     quality={100}
                 />

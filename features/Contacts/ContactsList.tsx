@@ -39,7 +39,7 @@ export default function ContactsList({contacts}:ContactsListProps){
                     <form onClick={()=>{
                         handleOnClick(ele)
                     }} key={idx} >
-                        <CardContactCard key={ele.id} ImageSide={()=><AvatarCardWithURLAndStyles imageStyles=" w-[49px]" url={ele.avatar_url} />} ContentSide={()=>(<CardContent CardContentStyles="my-3!" contentHeader={ele.custom_name } contentInfo={ele.info} />)} />
+                        <CardContactCard key={ele.id} ImageSide={()=><AvatarCardWithURLAndStyles imageStyles=" w-[49px]" url={ele.avatar_url ?? ""} />} ContentSide={()=>(<CardContent CardContentStyles="my-3!" contentHeader={ele.custom_name } contentInfo={ele.info ?? ""   } />)} />
                     </form>
                 )
             })}

@@ -1,8 +1,7 @@
 "use client"
 
-import { useAppContext } from "@/app/_components/AppContext";
 import { useAppUIContext } from "@/app/_providers/AppUIProvider";
-import { LeftPanelState } from "@/app/_types/Components"
+import { LeftPanelState } from "@/app/_types/Components";
 import IconContainer from "@/shared/ui/IconContainer";
 
 

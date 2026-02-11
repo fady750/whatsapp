@@ -20,13 +20,13 @@ type LeftSidePanelProps = {
     userID:string;
 }
 
-function updateConversationState(prevState: any[], payload: any) {
+function updateConversationState(prevState: Conversation[], payload: {eventType: "UPDATE" | "INSERT", new: Conversation}) {
     const updatedConversation = payload.new;
     console.log("payload ", payload);
     if (payload.eventType === "UPDATE") {
         console.log("updatedConversation",)
         return prevState.map(conv =>
-            conv.conversation_id === updatedConversation.id
+            conv.conversation_id === updatedConversation.conversation_id
                 ? { ...conv, ...updatedConversation } // merge updated info
                 : conv
         );
@@ -43,22 +43,22 @@ export default function LeftSidePanel({contacts, conversations, userID}:LeftSide
     const {setConversationsState} = useChatContext();
 
     const handlePayload = useCallback(
-        async (payload: any) => {
+        async (payload: {eventType: "UPDATE" | "INSERT", new: Conversation}) => {
             console.log("use useCallback function", payload.eventType)
             if (!userID) return;
 
             if (payload.eventType === "UPDATE") {
                 let updatedConversation = payload.new;
-                if (updatedConversation.last_message_id) {
+                if (updatedConversation.lastMessage) {
                     try {
-                        const lastMsg = await getUpdatedLastMessage(updatedConversation.last_message_id);
+                        const lastMsg = await getUpdatedLastMessage(updatedConversation.lastMessage);
                             updatedConversation = { ...updatedConversation, ...lastMsg };
                         } catch (err) {
                             console.error("Failed to fetch last message:", err);
                         }
                 }
                 setConversationsState(prev =>
-                    updateConversationState(prev, { ...payload, new: updatedConversation })
+                    updateConversationState(prev ?? [], { ...payload, new: updatedConversation })
                 );
             }
 
@@ -80,7 +80,7 @@ export default function LeftSidePanel({contacts, conversations, userID}:LeftSide
         const channel = supabase
         .channel("conversations-sidebar")
         .on(
-            "postgres_changes",
+            "system",
             {
                 event: "*",
                 schema: "public",
@@ -100,7 +100,7 @@ export default function LeftSidePanel({contacts, conversations, userID}:LeftSide
     
     return (
         <>
-            {leftPanelMode === "chats" && <ChatsPanel userID={userID} setConversationsState={setConversationsState} />}
+            {leftPanelMode === "chats" && <ChatsPanel/>}
             {leftPanelMode === "settings" && <Settings/>}
             {leftPanelMode === "contacts" && <Contacts contacts = {contacts} />}
             {leftPanelMode === "newContact" && <AddContact/>}

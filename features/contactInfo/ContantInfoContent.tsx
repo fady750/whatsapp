@@ -1,6 +1,5 @@
-import { AvatarCardLarge } from "@/shared/ui/Avatar"
+import { activeConversation } from "@/app/_types/Components"
 import Image from "next/image"
-import {activeConversation} from "@/app/_types/Components"
 
 export default function ContactInfoContent({activeConversation}:{activeConversation:activeConversation}){
     return(

@@ -1,9 +1,8 @@
-import { AvatarCardWithUrl } from "@/shared/ui/Avatar";
-import ChatHeaderMenu from "./ChatHeaderMenu";
-import ChatHeaderUserName from "./ChatHeaderUserName";
+import Image from "next/image";
 import { useAppUIContext } from "../_providers/AppUIProvider";
 import { useChatContext } from "../_providers/ChatProvider";
-import Image from "next/image";
+import ChatHeaderMenu from "./ChatHeaderMenu";
+import ChatHeaderUserName from "./ChatHeaderUserName";
 
 export default function ChatHeader(){
     const {setRightPanelMode} = useAppUIContext();

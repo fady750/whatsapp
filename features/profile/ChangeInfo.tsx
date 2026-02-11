@@ -23,54 +23,36 @@ export default function ChangeInfo({info}:{info:string|undefined}){
         focusInfoInput();
     };
 
-    async function handleUpdateInfo(e:FormEvent<HTMLFormElement>){
-        e.preventDefault();
-        if (infoValue !== undefined) {
-            try {
-                // Update session token and cookies - this triggers the JWT callback
-                await updateProfileInfoAction(infoValue);
-                await update({
-                    user: {
-                        info: infoValue,
-                    }
-                });
-                
-                // Remove focus after updating
-                textareaRef.current?.blur();
-            } catch (error) {
-                console.error("Error updating info:", error);
-            }
+    async function updateInfo() {
+        if (infoValue === undefined) return;
+        try {
+            await updateProfileInfoAction(infoValue);
+            await update({
+                user: {
+                    info: infoValue,
+                }
+            });
+            textareaRef.current?.blur();
+        } catch (error) {
+            console.error("Error updating info:", error);
         }
     }
 
-    async function handleUpdateInfoFromButton(e: React.MouseEvent) {
+    async function handleSubmit(e:FormEvent<HTMLFormElement>){
+        e.preventDefault();
+        await updateInfo();
+    }
+
+    async function handleUpdateInfoFromButton(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
         e.stopPropagation();
-        
-        if (infoValue !== undefined) {
-            try {
-                // Update session token and cookies - this triggers the JWT callback
-                await updateProfileInfoAction(infoValue);
-                await update({
-                    user: {
-                        info: infoValue,
-                    }
-                });
-                
-                // Remove focus after updating
-                textareaRef.current?.blur();
-            } catch (error) {
-                console.error("Error updating info:", error);
-            }
-        }
+        await updateInfo();
     }
     
     useEffect(() => {
         function handleClickOutside(e: MouseEvent) {
             if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-                // Remove focus from textarea
                 textareaRef.current?.blur();
-                // Reset input value to original info
                 setInfoValue(info);
             }
         }
@@ -79,7 +61,7 @@ export default function ChangeInfo({info}:{info:string|undefined}){
     }, [info]);
 
     return(
-        <form onSubmit={handleUpdateInfoFromButton} >
+        <form onSubmit={handleSubmit} >
             <div className="flex flex-col items-start px-[30px] pt-3.5 pb-2.5 gap-3 mb-2.5" >
                 <p className="text-primary-50 font-medium" >About</p>
                 <div 
@@ -87,11 +69,11 @@ export default function ChangeInfo({info}:{info:string|undefined}){
                     onClick={handleContainerClick}
                     className={` w-full flex items-center justify-between ${infoIsFocused && "border-b-2 border-primary-200"} `} 
                 >
-                    <input 
+                    <textarea 
                         ref={textareaRef}
                         onFocus={()=>setInfoIsFocused(true)} 
                         onBlur={()=>setInfoIsFocused(false)} 
-                        className={` text-primary-250 outline-none w-full pb-2 resize-none min-h-[20px] max-h-[200px] overflow-y-auto`} 
+                        className="text-primary-250 outline-none w-full pb-2 resize-none min-h-[20px] max-h-[200px] overflow-y-auto" 
                         value={infoValue || ''} 
                         onChange={(e)=>setInfoValue(e.target.value)}
                         rows={1}

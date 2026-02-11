@@ -7,7 +7,7 @@ import ChatWindow from "@/app/_components/ChatWindow"
 import ContactInfo from "@/features/contactInfo/ContactInfo"
 import { useAppUIContext } from "@/app/_providers/AppUIProvider"
 import { useChatContext } from "@/app/_providers/ChatProvider"
-
+import { activeConversation as ActiveConversationType } from "@/app/_types/Components"
 export default function RightSidePanel(){
     const {rightPanelMode} = useAppUIContext();
     const {activeConversation} = useChatContext();
@@ -16,7 +16,7 @@ export default function RightSidePanel(){
             {rightPanelMode === "settings" && <SettingsRightSidePanel/>}
             {rightPanelMode === "profile" && <ProfileRightSidePanel/>}
             {rightPanelMode === "init"  && <InitRightSidePanel/>}
-            {rightPanelMode === "contactInfo" && <ContactInfo activeConversation={activeConversation} />}
+            {rightPanelMode === "contactInfo" && <ContactInfo activeConversation={activeConversation as ActiveConversationType   } />}
             {(rightPanelMode === "chats"  && activeConversation !== undefined) ? <ChatWindow activeConversation={activeConversation}/> : <InitRightSidePanel/> }
         </div>
     )

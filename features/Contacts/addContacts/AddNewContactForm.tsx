@@ -1,15 +1,15 @@
 "use client"
 
+import { createContactAction, ExistProfile } from '@/app/_lib/action';
+import { useAppUIContext } from '@/app/_providers/AppUIProvider';
+import { validateEmail } from "@/shared/helpers";
+import ErrorInputMessage from '@/shared/ui/errorInputMessage';
 import IconContainer from '@/shared/ui/IconContainer';
 import { EmailIcon, UserIcon } from "@/shared/ui/Icons";
-import TextField from '@mui/material/TextField';
 import { InputAndIconContainer } from '@/shared/ui/InputContainer';
-import { createContactAction, ExistProfile } from '@/app/_lib/action';
-import { useState } from 'react';
-import {validateEmail} from "@/shared/helpers"
-import ErrorInputMessage from '@/shared/ui/errorInputMessage';
+import TextField from '@mui/material/TextField';
 import { useSession } from 'next-auth/react';
-import { useAppUIContext } from '@/app/_providers/AppUIProvider';
+import { useState } from 'react';
 
 type InputError = {
     firstName?:string;
@@ -55,7 +55,7 @@ export default function AddNewContactForm(){
             flag = true;
             obj.email = "email input is not valid"
         }
-        const {state, message} = await ExistProfile(email);
+        const {state} = await ExistProfile(email);
         if(state === "error"){
             flag = true;
             obj.email = "email is not found in DB";
@@ -65,7 +65,7 @@ export default function AddNewContactForm(){
             obj.email = "you cannot enter you Email";
         }
         if(flag){
-            setErrors((e)=>{return obj});
+            setErrors((e:InputError)=>{return {...e, ...obj}});
             return;
         }
         await createContactAction(formData);
