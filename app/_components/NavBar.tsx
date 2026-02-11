@@ -1,16 +1,16 @@
 'use client'
-import { Channels, Communities, LogOut, Messages, Settings, Status } from "@/app/_components/Icons";
-import { signoutAction } from "@/app/_lib/action";
-import { useAppContext } from "./AppContext";
-import { LeftPanelState } from "@/app/_types/Components";
+import { Channels, Communities, Messages, Settings, Status } from "@/app/_components/Icons";
 import { AvatarCardLarge } from "@/shared/ui/Avatar";
+import { useAppUIContext } from "@/app/_providers/AppUIProvider";
+import { useChatContext } from "@/app/_providers/ChatProvider";
 
 type NavbarStateTypes = {
     panelMode : "chats" | "profile" | "settings";
 }
 
 export default function NavBar(){
-    const {setLeftPanelMode, setRightPanelMode, activeConversation} = useAppContext();
+    const {setLeftPanelMode, setRightPanelMode} = useAppUIContext();
+    const {activeConversation} = useChatContext();
     
     function handleSetLeftPanelMode(PanelMode:NavbarStateTypes["panelMode"]){
         setLeftPanelMode(PanelMode);
