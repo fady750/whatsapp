@@ -193,7 +193,7 @@ export async function getAllMessagesAction(conversationId:string|undefined){
 }
 
 export async function SendMessageAction (message:{message:{conversationId:string|undefined,senderId:string,content:string,}}){
-    const data = await sendingMessage(message);
+    const data = await sendingMessage(message.message);
 }
 
 

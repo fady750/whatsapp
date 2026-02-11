@@ -6,7 +6,7 @@ export default function ChatMessageInputArea(){
     const {activeConversation} = useChatContext()
     const {data, status} = useSession();
     if(status !== "authenticated" || !data?.user) return;
-    const user = data?.user
+    const user = data?.user as {profileID:string};
     const conversationId = activeConversation?.id;
     const senderId = user.profileID;
     async function handleSendingMessage(formData:FormData){
@@ -16,7 +16,7 @@ export default function ChatMessageInputArea(){
             senderId,
             content
         }
-        await SendMessageAction(MessageObject)
+        await SendMessageAction({message:MessageObject});
     }
     return(
         <div className="grow">
